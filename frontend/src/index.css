@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, [data-theme="dark"], .dark *, [data-theme="dark"] *));
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: 'Times New Roman', Times, 'Be Vietnam Pro', serif;
+  --font-display: 'Cinzel', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.font-serif {
+  font-family: 'Times New Roman', Times, 'Be Vietnam Pro', serif;
+}
+
+:root {
+  color-scheme: light;
+  --luxury-primary: #0B0B0D;
+  --luxury-bg: #F8F7F4;
+  --luxury-surface: #FFFFFF;
+  --luxury-surface-dark: #141416;
+  --luxury-accent: #C6A77B;
+  --luxury-accent-hover: #B59363;
+  --luxury-secondary: #8A8A8A;
+  --luxury-text: #171717;
+  --luxury-text-muted: #6B6864;
+  --luxury-border: rgba(23, 23, 23, 0.08);
+  --luxury-border-dark: rgba(255, 255, 255, 0.1);
+}
+
+.dark {
+  color-scheme: dark;
+  --luxury-primary: #FFFFFF;
+  --luxury-bg: #0B0B0D;
+  --luxury-surface: #141416;
+  --luxury-surface-dark: #1A1A1E;
+  --luxury-accent: #C6A77B;
+  --luxury-accent-hover: #E2CEAE;
+  --luxury-secondary: #A1A1AA;
+  --luxury-text: #F8F7F4;
+  --luxury-text-muted: #9CA3AF;
+  --luxury-border: rgba(255, 255, 255, 0.1);
+  --luxury-border-dark: rgba(255, 255, 255, 0.15);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--luxury-bg);
+    color: var(--luxury-text);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .font-display {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.12em;
+  }
+
+  .font-sans {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(11, 11, 13, 0.04);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(198, 167, 123, 0.5);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(198, 167, 123, 0.8);
+}
+
+::selection {
+  background: rgba(198, 167, 123, 0.35);
+  color: #0B0B0D;
+}
+
+/* Luxury Utility Animations & Effects */
+.luxury-glass {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(23, 23, 23, 0.06);
+}
+
+.luxury-glass-dark {
+  background: rgba(11, 11, 13, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.luxury-glow {
+  box-shadow: 0 0 50px -10px rgba(198, 167, 123, 0.25);
+}
+
+.luxury-gold-gradient {
+  background: linear-gradient(135deg, #DFCA9B 0%, #C6A77B 50%, #A47D4C 100%);
+}
+
+.luxury-gold-text {
+  background: linear-gradient(135deg, #ECD5A5 0%, #C6A77B 50%, #9C723E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.luxury-border-glow {
+  position: relative;
+}
+.luxury-border-glow::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(198, 167, 123, 0.4), transparent 60%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}

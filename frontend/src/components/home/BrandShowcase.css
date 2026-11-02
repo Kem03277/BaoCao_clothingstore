@@ -1,0 +1,24 @@
+.brand-showcase-section {
+  background:
+    radial-gradient(ellipse at 86% 20%, rgba(198, 167, 123, 0.1), transparent 32%),
+    var(--luxury-bg);
+}
+
+.brand-showcase-card {
+  isolation: isolate;
+}
+
+.brand-showcase-logo {
+  filter: saturate(0.9);
+}
+
+.brand-showcase-card:hover .brand-showcase-logo {
+  filter: saturate(1.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-showcase-card,
+  .brand-showcase-logo {
+    transition: none;
+  }
+}

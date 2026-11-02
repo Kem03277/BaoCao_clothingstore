@@ -1,0 +1,16 @@
+.category-editorial-section {
+  background:
+    radial-gradient(ellipse at 12% 18%, rgba(198, 167, 123, 0.09), transparent 34%),
+    var(--luxury-bg);
+}
+
+.category-editorial-card {
+  isolation: isolate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .category-editorial-card,
+  .category-editorial-card img {
+    transition: none;
+  }
+}

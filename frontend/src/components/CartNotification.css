@@ -1,0 +1,37 @@
+.cart-notification {
+  animation: cart-notification-enter 240ms ease-out both;
+}
+
+.cart-notification__progress {
+  transform-origin: left;
+  animation: cart-notification-progress 3s linear both;
+}
+
+@keyframes cart-notification-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.5rem, 0) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes cart-notification-progress {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cart-notification,
+  .cart-notification__progress {
+    animation: none;
+  }
+}
