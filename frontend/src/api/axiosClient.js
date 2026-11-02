@@ -17,6 +17,10 @@ const publicAuthEndpoints = new Set([
   '/api/auth/register',
 ]);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d604981 (HoanThanh)
 axiosClient.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
