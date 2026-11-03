@@ -34,3 +34,6 @@ build/
 
 # Local environment variables and secrets
 .env
+
+# Installed dependencies
+node_modules/
