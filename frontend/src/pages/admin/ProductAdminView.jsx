@@ -680,7 +680,7 @@ export const ProductAdminView = () => {
                           )}
                           {brandObj && (
                             <span className="px-1.5 py-0.5 rounded text-[9px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">
-                              {brandObj.name}
+                              {brandObj.brandName || brandObj.name}
                             </span>
                           )}
                         </div>
@@ -890,7 +890,7 @@ export const ProductAdminView = () => {
                     <option value="">-- Không có / Tự do --</option>
                     {brands.map((b) => (
                       <option key={b.id} value={b.id}>
-                        {b.name}
+                        {b.brandName || b.name}
                       </option>
                     ))}
                   </select>
@@ -1290,7 +1290,7 @@ export const ProductAdminView = () => {
                     <option value="">-- Không có --</option>
                     {brands.map((b) => (
                       <option key={b.id} value={b.id}>
-                        {b.name}
+                        {b.brandName || b.name}
                       </option>
                     ))}
                   </select>

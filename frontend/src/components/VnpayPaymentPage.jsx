@@ -148,7 +148,6 @@ export const VnpayPaymentPage = ({
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
       <section className="overflow-hidden rounded-3xl border border-black/5 bg-white shadow-2xl dark:border-white/10 dark:bg-[#141416]">
-        
         {/* Header */}
         <div className="bg-gradient-to-r from-[#0B0B0D] via-[#161619] to-[#221F1B] px-6 py-6 text-white sm:px-8 border-b border-[#C6A77B]/20">
           <div className="flex items-center justify-between gap-4">
@@ -188,10 +187,8 @@ export const VnpayPaymentPage = ({
 
         {/* Body Container */}
         <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.1fr_1fr] items-start">
-          
           {/* Left: Thông tin thanh toán chi tiết & Hướng dẫn */}
           <div className="space-y-4">
-            
             {/* Status alerts */}
             {isPaid ? (
               <div
@@ -200,9 +197,12 @@ export const VnpayPaymentPage = ({
               >
                 <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
                 <div>
-                  <p className="font-bold text-emerald-900">Giao dịch thành công!</p>
+                  <p className="font-bold text-emerald-900">
+                    Giao dịch thành công!
+                  </p>
                   <p className="text-xs mt-0.5 text-emerald-700">
-                    Hệ thống đã xác nhận thanh toán đơn hàng. Chúng tôi đang đóng gói và chuẩn bị gửi hàng cho bạn.
+                    Hệ thống đã xác nhận thanh toán đơn hàng. Chúng tôi đang
+                    đóng gói và chuẩn bị gửi hàng cho bạn.
                   </p>
                 </div>
               </div>
@@ -226,7 +226,8 @@ export const VnpayPaymentPage = ({
                   <strong className="font-mono text-[#A88452] dark:text-[#E2CEAE] font-bold">
                     {formatRemaining(remaining)}
                   </strong>
-                  . Vui lòng nhập đúng nội dung chuyển khoản để đơn hàng được duyệt tự động.
+                  . Vui lòng nhập đúng nội dung chuyển khoản để đơn hàng được
+                  duyệt tự động.
                 </div>
               </div>
             )}
@@ -245,7 +246,9 @@ export const VnpayPaymentPage = ({
 
               {/* Ngân hàng */}
               <div className="flex items-center justify-between text-xs">
-                <span className="text-zinc-500 dark:text-zinc-400">Ngân hàng:</span>
+                <span className="text-zinc-500 dark:text-zinc-400">
+                  Ngân hàng:
+                </span>
                 <span className="font-bold text-[#0B0B0D] dark:text-white text-right">
                   {BANK_INFO.bankName}
                 </span>
@@ -288,7 +291,9 @@ export const VnpayPaymentPage = ({
                   </span>
                   <button
                     type="button"
-                    onClick={() => handleCopy(BANK_INFO.accountName, "accountName")}
+                    onClick={() =>
+                      handleCopy(BANK_INFO.accountName, "accountName")
+                    }
                     className="p-1 rounded-lg hover:bg-zinc-200 dark:hover:bg-white/10 text-zinc-600 dark:text-zinc-300 transition"
                     title="Sao chép tên chủ tài khoản"
                   >
@@ -303,7 +308,9 @@ export const VnpayPaymentPage = ({
 
               {/* Số tiền cần thanh toán */}
               <div className="flex items-center justify-between text-xs pt-1 border-t border-dashed border-zinc-200 dark:border-white/10">
-                <span className="text-zinc-500 dark:text-zinc-400">Số tiền thanh toán:</span>
+                <span className="text-zinc-500 dark:text-zinc-400">
+                  Số tiền thanh toán:
+                </span>
                 <div className="flex items-center gap-1.5">
                   <span className="text-lg font-black text-[#A88452] dark:text-[#E2CEAE] font-mono">
                     {formatVND(paymentAmount)}
@@ -341,7 +348,9 @@ export const VnpayPaymentPage = ({
                   {copiedField === "orderCode" ? (
                     <>
                       <Check className="w-3 h-3 text-emerald-600" />
-                      <span className="text-[11px] text-emerald-600">Đã chép</span>
+                      <span className="text-[11px] text-emerald-600">
+                        Đã chép
+                      </span>
                     </>
                   ) : (
                     <>
@@ -357,28 +366,14 @@ export const VnpayPaymentPage = ({
             {!isPaid && !isFinalFailure && (
               <div className="space-y-2 pt-1">
                 {confirmError && (
-                  <p className="text-xs text-rose-600 font-semibold">{confirmError}</p>
+                  <p className="text-xs text-rose-600 font-semibold">
+                    {confirmError}
+                  </p>
                 )}
-                <button
-                  type="button"
-                  onClick={handleConfirmTransfer}
-                  disabled={confirming}
-                  className="w-full py-3.5 px-6 rounded-2xl bg-[#0B0B0D] hover:bg-black text-[#C6A77B] hover:text-[#e4c9a4] font-extrabold text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-xl transition disabled:opacity-60 cursor-pointer"
-                >
-                  {confirming ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin text-[#C6A77B]" />
-                      <span>Đang xác nhận giao dịch...</span>
-                    </>
-                  ) : (
-                    <>
-                      <ShieldCheck className="w-4 h-4 text-[#C6A77B]" />
-                      <span>Tôi đã chuyển khoản thành công</span>
-                    </>
-                  )}
-                </button>
+
                 <p className="text-[11px] text-center text-zinc-400">
-                  Nhấn xác nhận sau khi bạn đã thực hiện chuyển tiền thành công trên ứng dụng ngân hàng.
+                  Nhấn xác nhận sau khi bạn đã thực hiện chuyển tiền thành công
+                  trên ứng dụng ngân hàng.
                 </p>
               </div>
             )}
@@ -415,7 +410,11 @@ export const VnpayPaymentPage = ({
 
             <div className="relative rounded-2xl overflow-hidden border-2 border-[#C6A77B]/30 bg-white p-2.5 shadow-lg">
               <img
-                src={qrLoadedError && session?.qrCodeDataUrl ? session.qrCodeDataUrl : vietQrImageUrl}
+                src={
+                  qrLoadedError && session?.qrCodeDataUrl
+                    ? session.qrCodeDataUrl
+                    : vietQrImageUrl
+                }
                 alt="Mã QR thanh toán MBBank"
                 onError={() => {
                   if (!qrLoadedError) setQrLoadedError(true);
@@ -432,7 +431,8 @@ export const VnpayPaymentPage = ({
                 {BANK_INFO.accountName}
               </p>
               <p className="text-[10px] text-zinc-400 mt-2 max-w-xs leading-relaxed">
-                Quét mã trên sẽ tự động điền đúng Số tài khoản, Tên người nhận và Số tiền.
+                Quét mã trên sẽ tự động điền đúng Số tài khoản, Tên người nhận
+                và Số tiền.
               </p>
             </div>
           </div>

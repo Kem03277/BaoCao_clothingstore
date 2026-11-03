@@ -13,9 +13,26 @@ export const categoryApi = {
 };
 
 export const brandApi = {
-  getAll: () => axiosClient.get('/api/brands'),
-  getById: (id) => axiosClient.get(`/api/brands/${id}`),
-  getAllForManagement: () => axiosClient.get('/api/brands/manage'),
+  getAll: async () => {
+    const res = await axiosClient.get('/api/brands');
+    return (Array.isArray(res) ? res : []).map((b) => ({
+      ...b,
+      name: b.name || b.brandName || '',
+      brandName: b.brandName || b.name || '',
+    }));
+  },
+  getById: async (id) => {
+    const b = await axiosClient.get(`/api/brands/${id}`);
+    return b ? { ...b, name: b.name || b.brandName || '', brandName: b.brandName || b.name || '' } : b;
+  },
+  getAllForManagement: async () => {
+    const res = await axiosClient.get('/api/brands/manage');
+    return (Array.isArray(res) ? res : []).map((b) => ({
+      ...b,
+      name: b.name || b.brandName || '',
+      brandName: b.brandName || b.name || '',
+    }));
+  },
   create: (data) => axiosClient.post('/api/brands', data),
   update: (id, data) => axiosClient.put(`/api/brands/${id}`, data),
   delete: (id) => axiosClient.delete(`/api/brands/${id}`),

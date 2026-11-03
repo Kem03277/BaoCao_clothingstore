@@ -17,7 +17,7 @@ import { useAuth } from '../../context/AuthContext';
 
 export const AdminLoginView = ({ onLoginSuccess, onBackToStore }) => {
   const { login, authMessage, setAuthMessage } = useAuth();
-  const [email, setEmail] = useState(() => localStorage.getItem('saved_admin_email') || 'admin@clothingstore.com');
+  const [email, setEmail] = useState(() => localStorage.getItem('saved_admin_email') || 'admin@gmail.com');
   const [password, setPassword] = useState('123456');
   const [rememberMe, setRememberMe] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
@@ -132,7 +132,7 @@ export const AdminLoginView = ({ onLoginSuccess, onBackToStore }) => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@clothingstore.com"
+                  placeholder="admin@gmail.com"
                   className="w-full pl-10 pr-4 py-3 rounded-xl bg-black/60 border border-white/10 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-[#C6A77B] focus:ring-1 focus:ring-[#C6A77B] transition"
                   required
                 />
@@ -205,10 +205,10 @@ export const AdminLoginView = ({ onLoginSuccess, onBackToStore }) => {
             <div className="flex gap-2">
               <button
                 type="button"
-                onClick={() => handleFillDemo('admin@clothingstore.com', '123456')}
+                onClick={() => handleFillDemo('admin@gmail.com', '123456')}
                 className="flex-1 py-2 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] font-bold text-[#E2CEAE] transition"
               >
-                ADMIN: admin@clothingstore.com
+                ADMIN: admin@gmail.com
               </button>
             </div>
           </div>

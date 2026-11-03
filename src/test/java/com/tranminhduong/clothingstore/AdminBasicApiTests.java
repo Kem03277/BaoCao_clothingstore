@@ -10,6 +10,7 @@ import com.tranminhduong.clothingstore.entity.PostCategory;
 import com.tranminhduong.clothingstore.entity.Product;
 import com.tranminhduong.clothingstore.entity.Role;
 import com.tranminhduong.clothingstore.entity.User;
+import jakarta.servlet.DispatcherType;
 import jakarta.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.nio.file.Files;
@@ -462,6 +463,9 @@ class AdminBasicApiTests {
         mockMvc.perform(get("/api/posts/manage").header("Authorization", authorization))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)));
+        mockMvc.perform(get("/api/posts/manage/trash").header("Authorization", authorization))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(0)));
 
         mockMvc.perform(put("/api/posts/{id}", draftId)
                         .header("Authorization", authorization)
@@ -482,6 +486,18 @@ class AdminBasicApiTests {
     void anonymousUsersCannotAccessPostManagementEndpoints() throws Exception {
         mockMvc.perform(get("/api/posts/manage"))
                 .andExpect(status().isUnauthorized());
+        mockMvc.perform(get("/api/posts/manage/trash"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @WithAnonymousUser
+    void errorDispatchDoesNotTurnControllerErrorsIntoUnauthorizedResponses() throws Exception {
+        mockMvc.perform(get("/api/posts/manage").with(request -> {
+                    request.setDispatcherType(DispatcherType.ERROR);
+                    return request;
+                }))
+                .andExpect(status().isOk());
     }
 
     @Test

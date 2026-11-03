@@ -180,8 +180,7 @@ public class ProductServiceImpl implements ProductService {
         Product product = getProductById(id);
         UploadResponse uploadedImage = uploadService.upload(file);
 
-        List<ProductImage> images = new ArrayList<>(product.getImages());
-        for (ProductImage image : images) {
+        for (ProductImage image : product.getImages()) {
             if (Boolean.TRUE.equals(image.getPrimary())) {
                 image.setPrimary(false);
             }
@@ -192,8 +191,7 @@ public class ProductServiceImpl implements ProductService {
         mainImage.setAltText(product.getName());
         mainImage.setPrimary(true);
         mainImage.setProduct(product);
-        images.add(productImageRepository.save(mainImage));
-        product.setImages(images);
+        product.getImages().add(productImageRepository.save(mainImage));
         return product;
     }
 
@@ -205,7 +203,6 @@ public class ProductServiceImpl implements ProductService {
             throw new BadRequestException("Vui lòng chọn ít nhất một ảnh phụ");
         }
 
-        List<ProductImage> images = new ArrayList<>(product.getImages());
         for (MultipartFile file : files) {
             UploadResponse uploadedImage = uploadService.upload(file);
             ProductImage additionalImage = new ProductImage();
@@ -213,9 +210,8 @@ public class ProductServiceImpl implements ProductService {
             additionalImage.setAltText(product.getName());
             additionalImage.setPrimary(false);
             additionalImage.setProduct(product);
-            images.add(productImageRepository.save(additionalImage));
+            product.getImages().add(productImageRepository.save(additionalImage));
         }
-        product.setImages(images);
         return product;
     }
 

@@ -2,6 +2,7 @@ package com.tranminhduong.clothingstore.config;
 
 import com.tranminhduong.clothingstore.security.JwtAuthenticationFilter;
 import com.tranminhduong.clothingstore.security.SecurityErrorWriter;
+import jakarta.servlet.DispatcherType;
 import java.util.Base64;
 import java.security.SecureRandom;
 import javax.crypto.SecretKey;
@@ -97,6 +98,7 @@ public class SecurityConfig {
                         .accessDeniedHandler((request, response, exception) -> SecurityErrorWriter.write(
                                 request, response, HttpStatus.FORBIDDEN, "Bạn không có quyền sử dụng API này")))
                 .authorizeHttpRequests(authorize -> authorize
+                        .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login", "/api/admin/login")
                         .permitAll()
@@ -110,7 +112,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/categories/trash/**", "/api/brands/trash/**")
                         .hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/brands/manage").hasRole("ADMIN")
-                        .requestMatchers("/api/posts/manage/**").hasAnyRole("ADMIN", "STAFF")
+                        .requestMatchers("/api/posts/manage", "/api/posts/manage/**")
+                        .hasAnyRole("ADMIN", "STAFF")
                         .requestMatchers(HttpMethod.POST, "/api/posts")
                         .hasAnyRole("ADMIN", "STAFF")
                         .requestMatchers(HttpMethod.PUT, "/api/posts/*")
