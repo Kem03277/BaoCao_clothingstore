@@ -149,12 +149,8 @@ public class OrderServiceImpl implements OrderService {
         order.setRecipientName(address.getRecipientName());
         order.setRecipientPhone(address.getPhone());
         order.setShippingAddress(address.getAddressLine() + ", " + address.getProvince());
-<<<<<<< HEAD
         String paymentMethod = request.paymentMethod() == null ? "COD"
                 : request.paymentMethod().trim().toUpperCase(Locale.ROOT);
-=======
-        String paymentMethod = request.paymentMethod() == null ? "COD" : request.paymentMethod().trim().toUpperCase(Locale.ROOT);
->>>>>>> d604981 (HoanThanh)
         if (!Set.of("COD", "VNPAY").contains(paymentMethod)) {
             throw new BadRequestException("Phương thức thanh toán không hợp lệ");
         }
@@ -211,12 +207,8 @@ public class OrderServiceImpl implements OrderService {
 
         BigDecimal shippingFee = storeInformationService.calculateShippingFee(subtotal);
         BigDecimal totalAmount = subtotal.subtract(discountAmount).add(shippingFee);
-<<<<<<< HEAD
         if (totalAmount.compareTo(BigDecimal.ZERO) < 0)
             totalAmount = BigDecimal.ZERO;
-=======
-        if (totalAmount.compareTo(BigDecimal.ZERO) < 0) totalAmount = BigDecimal.ZERO;
->>>>>>> d604981 (HoanThanh)
 
         order.setSubtotal(subtotal);
         order.setDiscountAmount(discountAmount);
@@ -286,17 +278,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private String normalizeStatus(String status) {
-<<<<<<< HEAD
         if (status == null)
             return null;
         String normalized = status.trim();
         if (normalized.isBlank())
             return null;
-=======
-        if (status == null) return null;
-        String normalized = status.trim();
-        if (normalized.isBlank()) return null;
->>>>>>> d604981 (HoanThanh)
         return normalized.toUpperCase(Locale.ROOT);
     }
 
